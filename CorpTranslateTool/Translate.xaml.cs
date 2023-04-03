@@ -156,7 +156,7 @@ namespace CorpTranslateTool
 
 
                     Translation translation = JsonConvert.DeserializeObject<Translation>(responseString);
-                    txt_TransText.Text = translation.text;
+                    txt_TransText.Text = translation.Text;
 
 
                 }
