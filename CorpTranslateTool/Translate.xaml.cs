@@ -30,7 +30,7 @@ namespace CorpTranslateTool
 
             LoadLanguages();
 
-            srcText.Focus();
+            txt_SrcText.Focus();
 
             lbl_Console.Content = "";
         }
@@ -60,7 +60,7 @@ namespace CorpTranslateTool
         public bool AllInputs()
         {
             bool SelectedLanguage = cb_langauges.SelectedIndex < 0;
-            bool InputText = srcText.Text.Length < 1;
+            bool InputText = txt_SrcText.Text.Length < 1;
 
             if (SelectedLanguage is true | InputText is true)
             {
@@ -91,7 +91,7 @@ namespace CorpTranslateTool
                         contentOrigin = "SECRET",
                         srcLanguage = "xx",
                         tgtLanguage = cb_langauges.SelectedValue.ToString(),
-                        sourcetext = srcText.Text.ToString(),
+                        sourcetext = txt_SrcText.Text.ToString(),
                         textType = "plain"
 
                     };
@@ -110,7 +110,7 @@ namespace CorpTranslateTool
             }
             catch (Exception ex)
             {
-                srcText.Text = ex.Message;
+                txt_SrcText.Text = ex.Message;
                 throw;
             }
 
@@ -136,7 +136,7 @@ namespace CorpTranslateTool
                         contentOrigin = "SECRET",
                         srcLanguage = lbl_detect.Content,
                         tgtLanguage = cb_langauges.SelectedValue.ToString(),
-                        sourcetext = srcText.Text.ToString(),
+                        sourcetext = txt_SrcText.Text.ToString(),
                         textType = "plain"
 
                     };
@@ -156,14 +156,14 @@ namespace CorpTranslateTool
 
 
                     Translation translation = JsonConvert.DeserializeObject<Translation>(responseString);
-                    transText.Text = translation.text;
+                    txt_TransText.Text = translation.text;
 
 
                 }
             }
             catch (Exception ex)
             {
-                transText.Text = ex.Message;
+                txt_TransText.Text = ex.Message;
 
             }
         }
@@ -191,13 +191,13 @@ namespace CorpTranslateTool
         {
             try
             {
-                Clipboard.SetText(transText.Text);
+                Clipboard.SetText(txt_TransText.Text);
                 ShowMessage("The translated text has been copied to the clipboard");
 
             }
             catch (Exception ex)
             {
-                transText.Text = ex.Message;
+                txt_TransText.Text = ex.Message;
 
             }
         }
@@ -225,7 +225,7 @@ namespace CorpTranslateTool
             }
             catch (Exception ex)
             {
-                transText.Text = ex.Message;
+                txt_TransText.Text = ex.Message;
 
             }
         }
@@ -243,7 +243,7 @@ namespace CorpTranslateTool
                 }
 
                 await DetectLanguage();
-                transText.Text = "Translating...";
+                txt_TransText.Text = "Translating...";
 
 
                 await TranslateTask();
@@ -259,10 +259,10 @@ namespace CorpTranslateTool
                     return;
                 }
                 await DetectLanguage();
-                transText.Text = "Translating...";
+                txt_TransText.Text = "Translating...";
                 await TranslateTask();
 
-                Clipboard.SetText(transText.Text);
+                Clipboard.SetText(txt_TransText.Text);
                 ShowMessage("The translated text has been copied to the clipboard");
 
             }
@@ -275,19 +275,19 @@ namespace CorpTranslateTool
         {
             try
             {
-                if (transText.Text.Length < 1)
+                if (txt_TransText.Text.Length < 1)
                 {
                     ShowMessage("Nothing to copy");
                     return;
                 }
 
 
-                Clipboard.SetText(transText.Text);
+                Clipboard.SetText(txt_TransText.Text);
                 ShowMessage("The translated text has been copied to the clipboard");
             }
             catch (Exception ex)
             {
-                transText.Text = ex.Message;
+                txt_TransText.Text = ex.Message;
 
             }
         }
@@ -302,7 +302,7 @@ namespace CorpTranslateTool
             }
 
             await DetectLanguage();
-            transText.Text = "Translating...";
+            txt_TransText.Text = "Translating...";
 
             await TranslateTask();
         }
@@ -311,13 +311,13 @@ namespace CorpTranslateTool
         //click on img --> copy text into clipboard
         private void img_copy_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (transText.Text.Length < 1)
+            if (txt_TransText.Text.Length < 1)
             {
                 ShowMessage("Nothing to copy");
             }
             else
             {
-                Clipboard.SetText(transText.Text);
+                Clipboard.SetText(txt_TransText.Text);
                 ShowMessage("The translated text has been copied to the clipboard");
             }
         }
