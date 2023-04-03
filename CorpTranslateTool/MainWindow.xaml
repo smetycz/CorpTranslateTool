@@ -1,0 +1,25 @@
+﻿<Window x:Class="CorpTranslateTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CorpTranslateTool"
+        mc:Ignorable="d"
+         Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid>
+        <Frame x:Name="fr_content" Width="780" HorizontalAlignment="Center" Height ="410" VerticalAlignment="Bottom" Margin="0,0,0,10" Background="Azure"/>
+        <Grid x:Name="LeftBar" Width="10" Height="420" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF2587BE" Cursor="Hand"/>
+        <Grid x:Name="RightBar" Width="10" Height="420" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FF2587BE" Cursor="Hand"/>
+        <Grid x:Name="TopBar" Width="800" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF2587BE" Cursor="Hand">
+            <Label Content="Corporate Translate Tool" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image x:Name="img_att" Source="/Resources/att.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" ToolTip="ADP Translate Tool"/>
+
+            <Label x:Name="lbl_close" Content="×" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="770,0,0,0" Width="30" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" MouseLeftButtonDown="lbl_close_MouseLeftButtonDown" ToolTip="Close" Cursor="Hand"/>
+            <Label x:Name="lbl_minimize" Content="−" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="740,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="30" Height="30" FontSize="16" FontWeight="Bold" MouseLeftButtonDown="lbl_minimize_MouseLeftButtonDown" ToolTip="Minimize" Cursor="Hand"/>
+        </Grid>
+        <Grid x:Name="BottomBar" Width="800" Height="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#FF2587BE" Cursor="Hand"/>
+    </Grid>
+</Window>
