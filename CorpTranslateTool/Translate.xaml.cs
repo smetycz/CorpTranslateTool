@@ -22,6 +22,7 @@ namespace CorpTranslateTool
     /// <summary>
     /// Interaction logic for Translate.xaml
     /// </summary>
+    
     public partial class Translate : Page
     {
         public Translate()
@@ -34,6 +35,23 @@ namespace CorpTranslateTool
 
             lbl_Console.Content = "";
         }
+        
+          public class Translation
+    {
+        public string DetectedLanguage { get; set; }
+        public string TgtLanguage { get; set; }
+
+        public string Text { get; set; }
+
+    }
+
+   
+    public class JsonContent : StringContent
+    {
+        public JsonContent(object obj) :
+            base(Newtonsoft.Json.JsonConvert.SerializeObject(obj), System.Text.Encoding.UTF8, "application/json")
+        { }
+    }
 
         // this method populates combobox with some languages
 
@@ -186,22 +204,6 @@ namespace CorpTranslateTool
 
         }
 
-        // copy translated text
-        private void btn_copy_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Clipboard.SetText(txt_TransText.Text);
-                ShowMessage("The translated text has been copied to the clipboard");
-
-            }
-            catch (Exception ex)
-            {
-                txt_TransText.Text = ex.Message;
-
-            }
-        }
-
 
         // this method shows some information to the user for 4 seconds
         public void ShowMessage(string input)
@@ -271,7 +273,7 @@ namespace CorpTranslateTool
 
 
         // double click - copy translated text into clipboard
-        private void transText_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void txtTransText_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -323,27 +325,5 @@ namespace CorpTranslateTool
         }
     }
 
-
-
-
-
-  
-
-    public class Translation
-    {
-        public string DetectedLanguage { get; set; }
-        public string TgtLanguage { get; set; }
-
-        public string Text { get; set; }
-
-    }
-
-   
-    public class JsonContent : StringContent
-    {
-        public JsonContent(object obj) :
-            base(Newtonsoft.Json.JsonConvert.SerializeObject(obj), System.Text.Encoding.UTF8, "application/json")
-        { }
-    }
 
 }
