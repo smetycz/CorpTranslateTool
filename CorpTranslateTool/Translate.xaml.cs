@@ -104,7 +104,7 @@ namespace CorpTranslateTool
 
                     var responseDetectedLanguage = await client.SendAsync(request);
                     var responseContent = await responseDetectedLanguage.Content.ReadAsStringAsync();
-                    string responseString = responseContent.ToString().Replace("[", "").Replace("]", "").Replace("\"", "");
+                    var responseString = responseContent.ToString().Replace("\"", "");
                     lbl_detect.Content = responseString;
                 }
             }
@@ -150,7 +150,7 @@ namespace CorpTranslateTool
 
                     var response = await client.SendAsync(request);
                     var responseContent = await response.Content.ReadAsStringAsync();
-                    string responseString = responseContent.ToString().Replace("[", "").Replace("]", "");
+                    var responseString = responseContent.ToString().Replace("[", "").Replace("]", "");
 
 
 
@@ -327,26 +327,18 @@ namespace CorpTranslateTool
 
 
 
-    public class DetectedLanguage
-    {
-        public string sourcetext { get; set; }
-    }
+  
 
     public class Translation
     {
-        public string detectedLanguage { get; set; }
-        public string tgtLanguage { get; set; }
+        public string DetectedLanguage { get; set; }
+        public string TgtLanguage { get; set; }
 
-        public string text { get; set; }
+        public string Text { get; set; }
 
     }
 
-    public class TransCollection
-    {
-        private List<Translation> translations;
-        public List<Translation> Translations { get => translations; set => translations = value; }
-    }
-
+   
     public class JsonContent : StringContent
     {
         public JsonContent(object obj) :
